@@ -5,7 +5,7 @@ import torch
 from torchvision import models
 from torch import nn
 
-
+# 反卷积核的初始化，线性插值的计算
 def bilinear_kernel(in_channels, out_channels, kernel_size):
     """Define a bilinear kernel according to in channels and out channels.
     Returns:
@@ -25,7 +25,7 @@ def bilinear_kernel(in_channels, out_channels, kernel_size):
 
 pretrained_net = models.vgg16_bn(pretrained=False)
 
-
+#对整个模型的定义
 class FCN(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
@@ -51,7 +51,7 @@ class FCN(nn.Module):
 
         self.upsample_2x_2 = nn.ConvTranspose2d(256, 256, 4, 2, 1, bias=False)
         self.upsample_2x_2.weight.data = bilinear_kernel(256, 256, 4)
-
+# 前项船舶
     def forward(self, x):
         s1 = self.stage1(x)
         s2 = self.stage2(s1)
