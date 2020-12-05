@@ -3,7 +3,7 @@ from __future__ import division
 import numpy as np
 import six
 
-
+# 计算混淆矩阵，计算miou时很巧妙
 def calc_semantic_segmentation_confusion(pred_labels, gt_labels):
     """Collect a confusion matrix.
 
@@ -102,7 +102,7 @@ def calc_semantic_segmentation_iou(confusion):
     return iou[:-1]
     # return iou
 
-
+# 其他指标的计算
 def eval_semantic_segmentation(pred_labels, gt_labels):
     """Evaluate metrics used in Semantic Segmentation.
 
